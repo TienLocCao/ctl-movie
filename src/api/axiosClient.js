@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const MainApi = axios.create({
-baseURL: process.env.VUE_APP_API_URL,
+baseURL: 'https://api.themoviedb.org',
   withCredentials: false,
   headers: {
     Accept: "application/json",
