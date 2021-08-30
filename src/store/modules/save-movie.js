@@ -46,9 +46,8 @@ const actions = {
 const mutations = {
   addMovieToWatchList(state, data) {
     state.allMovie = [
-      ...new Set(state.allMovie.map(o => JSON.stringify(o)))
+      ...new Set([...state.allMovie, {...data,src: convertToSlug(data.original_title)}].map(o => JSON.stringify(o)))
     ].map(s => JSON.parse(s));
-
 
     state.watchlist = [{...data,src: convertToSlug(data.original_title)}, ...state.watchlist];
     localStorage.setItem(
@@ -69,7 +68,7 @@ const mutations = {
 
   addMovieToWatched(state, data) {
     state.allMovie = [
-      ...new Set(state.allMovie.map(o => JSON.stringify(o)))
+      ...new Set([...state.allMovie, {...data,src: convertToSlug(data.original_title)}].map(o => JSON.stringify(o)))
     ].map(s => JSON.parse(s));
 
     state.watchlist = state.watchlist.filter((movie) => movie.id !== data.id);
